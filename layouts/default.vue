@@ -12,7 +12,7 @@
 <style>
 </style>
 <script>
-import Navbar from '../components/navbar'
+import Navbar from './TheNavbar'
 export default {
   components: { Navbar }
 }

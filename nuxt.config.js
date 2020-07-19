@@ -29,6 +29,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '@/assets/css/app.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -46,7 +47,7 @@ export default {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
+    '@nuxtjs/eslint-module'
   ],
   /*
   ** Nuxt.js modules
@@ -56,7 +57,7 @@ export default {
     '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    '@nuxtjs/pwa'
   ],
   /*
   ** Axios module configuration
@@ -76,6 +77,6 @@ export default {
           customProperties: false
         }
       }
-    },
+    }
   }
 }

@@ -51,6 +51,7 @@
       </div>
     </div>
     <nuxt-link
+      event=""
       to="/match/effectif"
       class="button is-success is-large is-pulled-right"
       @click.native="handlerValidation"
@@ -62,47 +63,50 @@
 // import { mapMutations } from 'vuex'
 
 export default {
-  name: "New",
-  async asyncData({ $axios }) {
-    const { data: dataEquipes } = await $axios.get("/equipes/");
-    const { data: dataSalle } = await $axios.get("/salles/");
+  name: 'New',
+  async asyncData ({ $axios }) {
+    const { data: dataEquipes } = await $axios.get('/equipes/')
+    const { data: dataSalle } = await $axios.get('/salles/')
     return {
-      listEquipe: dataEquipes["hydra:member"],
-      listSalles: dataSalle["hydra:member"]
-    };
+      listEquipe: dataEquipes['hydra:member'],
+      listSalles: dataSalle['hydra:member']
+    }
   },
-  data() {
+  data () {
     return {
       equipeA: this.$store.state.idEquipeA,
       equipeB: this.$store.state.idEquipeB,
-      salle: "",
-      dateMatch: ""
-    };
+      salle: '',
+      dateMatch: ''
+    }
   },
   methods: {
-    handlerValidation(event) {
-      event.preventDefault();
-
-      const idEquipeA = this.equipeA;
-      const idEquipeB = this.equipeB;
-      const nomEquipeA = this.listEquipe.find(item => item.id === this.equipeA)
-        .nom;
-      const nomEquipeB = this.listEquipe.find(item => item.id === this.equipeB)
-        .nom;
-      this.$store.commit("setEquipeA", { idEquipeA, nomEquipeA });
-      this.$store.commit("setEquipeB", { idEquipeB, nomEquipeB });
-      const { data } = this.$axios.$post("/matches", {
-        date: dateMatch,
+    handlerValidation (event) {
+      const idEquipeA = this.equipeA
+      const idEquipeB = this.equipeB
+      const nomEquipeA = this.listEquipe.find(item => item.id === this.equipeA).nom
+      const nomEquipeB = this.listEquipe.find(item => item.id === this.equipeB).nom
+      this.$store.commit('setEquipeA', { idEquipeA, nomEquipeA })
+      this.$store.commit('setEquipeB', { idEquipeB, nomEquipeB })
+      this.$axios.$post('/matches', {
+        date: this.dateMatch,
         scoreA: 0,
         scoreB: 0,
-        salle: "/api/salles/" + salle,
+        salle: '/api/salles/' + this.salle,
         sets: [],
-        equipeA: "/api/equipes/" + idEquipeA,
-        equipeB: "/api/equipes/" + idEquipeB
-      });
+        equipeA: '/api/equipes/' + idEquipeA,
+        equipeB: '/api/equipes/' + idEquipeB
+      })
+        .then((res) => {
+          this.$store.commit('setMatch', res.id)
+          this.$router.push('/match/effectif')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
-};
+}
 </script>
 
 <style scoped>

@@ -88,12 +88,6 @@ export default {
       const nomEquipeB = this.listEquipe.find(item => item.id === this.equipeB).nom
       this.$store.commit('setEquipeA', { idEquipeA, nomEquipeA })
       this.$store.commit('setEquipeB', { idEquipeB, nomEquipeB })
-      this.$axios.$post('/matches', {
-        date: this.dateMatch,
-        salle: this.salle
-        // idEquipeA: idEquipeA,
-        // idEquipeB: idEquipeB
-      })
     }
   }
 }

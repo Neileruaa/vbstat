@@ -1,13 +1,17 @@
 export const state = () => ({
-  equipeA: '',
-  equipeB: ''
+  idEquipeA: '',
+  idEquipeB: '',
+  nomEquipeA: '',
+  nomEquipeB: ''
 })
 
 export const mutations = {
-  setEquipeA (state, equipeA) {
-    state.equipeA = equipeA
+  setEquipeA (state, { idEquipeA, nomEquipeA }) {
+    state.idEquipeA = idEquipeA
+    state.nomEquipeA = nomEquipeA
   },
-  setEquipeB (state, equipeB) {
-    state.equipeB = equipeB
+  setEquipeB (state, { idEquipeB, nomEquipeB }) {
+    state.idEquipeB = idEquipeB
+    state.nomEquipeB = nomEquipeB
   }
 }

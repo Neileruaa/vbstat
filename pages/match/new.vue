@@ -57,8 +57,12 @@ export default {
   },
   methods: {
     handlerValidation (event) {
-      this.$store.commit('setEquipeA', this.equipeA)
-      this.$store.commit('setEquipeB', this.equipeB)
+      const idEquipeA = this.equipeA
+      const idEquipeB = this.equipeB
+      const nomEquipeA = this.listEquipe.find(item => item.id === this.equipeA).nom
+      const nomEquipeB = this.listEquipe.find(item => item.id === this.equipeB).nom
+      this.$store.commit('setEquipeA', { idEquipeA, nomEquipeA })
+      this.$store.commit('setEquipeB', { idEquipeB, nomEquipeB })
     }
   }
 }

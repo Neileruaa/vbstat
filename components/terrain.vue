@@ -11,7 +11,7 @@
         {{ score[0] }} : {{ score[1] }}
       </p>
       <p class="level-item has-text-centered">
-        <a class="link is-info">Reservations</a>
+        <a class="link is-info" @click.prevent="validerSet">Valider Set</a>
       </p>
       <p class="level-item has-text-centered">
         <a class="link is-info">Contact</a>
@@ -123,7 +123,7 @@ export default {
       this.actualPoint = [x, y]
     },
     // drawPoints () {
-    //   this.points.forEach((point) => {
+    //   this.points.forEach((point) => {²
     //     const { type, x, y } = point
     //     console.log(type, x, y)
     //   })
@@ -135,6 +135,20 @@ export default {
         this.canvasCtx.fillStyle = '#FF0000'
       }
       this.canvasCtx.fillRect(this.actualPoint[0] - 5, this.actualPoint[1] - 5, 10, 10)
+    },
+    validerSet () {
+      const pointArr = []
+      this.points.forEach((point) => {
+        const { idJoueur, type } = point
+        pointArr.push({ type, joueur: '/api/joueurs/' + idJoueur })
+      })
+      this.$axios.$post('/sets', {
+        numero: 0,
+        scoreA: this.score[0],
+        scoreB: this.score[1],
+        points: pointArr,
+        matchs: '/api/matches/' + this.$store.getters.idMatch
+      })
     }
   }
 }

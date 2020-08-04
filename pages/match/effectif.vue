@@ -45,8 +45,8 @@
 export default {
   name: 'Effectif',
   async fetch () {
-    const idEquipeA = this.$store.state.idEquipeA
-    const idEquipeB = this.$store.state.idEquipeB
+    const idEquipeA = this.$store.getters.idEquipeA
+    const idEquipeB = this.$store.getters.idEquipeB
     const { data: equipeA } = await this.$axios.get('/equipes/' + idEquipeA)
     const { data: equipeB } = await this.$axios.get('/equipes/' + idEquipeB)
     this.equipeA = equipeA

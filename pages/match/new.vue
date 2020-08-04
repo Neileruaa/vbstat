@@ -74,8 +74,8 @@ export default {
   },
   data () {
     return {
-      equipeA: this.$store.state.idEquipeA,
-      equipeB: this.$store.state.idEquipeB,
+      equipeA: this.$store.getters.idEquipeA,
+      equipeB: this.$store.getters.idEquipeB,
       salle: '',
       dateMatch: ''
     }
@@ -84,8 +84,8 @@ export default {
     handlerValidation (event) {
       const idEquipeA = this.equipeA
       const idEquipeB = this.equipeB
-      const nomEquipeA = this.listEquipe.find(item => item.id === this.equipeA).nom
-      const nomEquipeB = this.listEquipe.find(item => item.id === this.equipeB).nom
+      const nomEquipeA = this.listEquipe.find(item => item.id === parseInt(this.equipeA)).nom
+      const nomEquipeB = this.listEquipe.find(item => item.id === parseInt(this.equipeB)).nom
       this.$store.commit('setEquipeA', { idEquipeA, nomEquipeA })
       this.$store.commit('setEquipeB', { idEquipeB, nomEquipeB })
       this.$axios.$post('/matches', {

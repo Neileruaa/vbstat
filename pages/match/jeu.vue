@@ -3,8 +3,9 @@
     <section class="hero is-warning">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">{{ $store.state.nomEquipeA }} VS {{ $store.state.nomEquipeB }}</h1>
-          <h2 class="subtitle">Vous pouvez choisir les 2 équipes qui vont s'affronter.</h2>
+          <h1 class="title">
+            {{ nomEquipeA }} VS {{ nomEquipeB }}
+          </h1>
         </div>
       </div>
     </section>
@@ -18,7 +19,15 @@
 import Terrain from '../../components/terrain'
 export default {
   name: 'Jeu',
-  components: { Terrain }
+  components: { Terrain },
+  computed: {
+    nomEquipeA () {
+      return this.$store.getters.nomEquipeA
+    },
+    nomEquipeB () {
+      return this.$store.getters.nomEquipeB
+    }
+  }
 }
 </script>
 

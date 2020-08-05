@@ -143,7 +143,6 @@ export default {
         pointArr.push({ type, joueur: '/api/joueurs/' + idJoueur })
       })
       this.$axios.$post('/sets', {
-        numero: 0,
         scoreA: this.score[0],
         scoreB: this.score[1],
         points: pointArr,

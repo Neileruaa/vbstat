@@ -105,9 +105,9 @@ export default {
     handlerClickTerrain (event) {
       this.showModal = true
       this.getCoordinateClick(event)
-      this.drawPoint(event)
     },
     createPoint (idJoueur) {
+      this.drawPoint()
       this.points.push({ idJoueur, type: this.isGoodBall ? 'jeu' : 'faute', x: this.actualPoint[0], y: this.actualPoint[1] })
       localStorage.setItem('points', JSON.stringify(this.points))
       this.showModal = false

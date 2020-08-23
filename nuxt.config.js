@@ -57,14 +57,24 @@ export default {
     '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/pwa'
   ],
+  proxy: {
+    '/api/': {
+      target: 'http://127.0.0.1:8000/api',
+      pathRewrite: {
+        '^/api/' : ''
+      },
+      // changeOrigin: false
+    }
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api'
+    proxy: true
   },
   /*
   ** Build configuration

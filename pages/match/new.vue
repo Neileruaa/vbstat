@@ -65,11 +65,11 @@
 export default {
   name: 'New',
   async asyncData ({ $axios }) {
-    const { data: dataEquipes } = await $axios.get('/equipes/')
-    const { data: dataSalle } = await $axios.get('/salles/')
+    const { data: dataEquipes } = await $axios.get('/api/equipes/')
+    const { data: dataSalle } = await $axios.get('/api/salles/')
     return {
-      listEquipe: dataEquipes['hydra:member'],
-      listSalles: dataSalle['hydra:member']
+      listEquipe: dataEquipes,
+      listSalles: dataSalle
     }
   },
   data () {
@@ -88,14 +88,14 @@ export default {
       const nomEquipeB = this.listEquipe.find(item => item.id === parseInt(this.equipeB)).nom
       this.$store.commit('setEquipeA', { idEquipeA, nomEquipeA })
       this.$store.commit('setEquipeB', { idEquipeB, nomEquipeB })
-      this.$axios.$post('/matches', {
+      this.$axios.$post('/api/match', {
         date: this.dateMatch,
         scoreA: 0,
         scoreB: 0,
-        salle: '/api/salles/' + this.salle,
+        salle: this.salle,
         sets: [],
-        equipeA: '/api/equipes/' + idEquipeA,
-        equipeB: '/api/equipes/' + idEquipeB
+        equipeA: idEquipeA,
+        equipeB: idEquipeB
       })
         .then((res) => {
           this.$store.commit('setMatch', res.id)

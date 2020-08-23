@@ -15,7 +15,7 @@
         <div class="select is-multiple">
           <select v-model="joueursA" multiple size="8">
             <option v-for="joueur in equipeA.joueurs" :value="joueur.id" :key="joueur.id">
-              {{ joueur.prenom }}
+              {{ joueur.prenom }} {{ joueur.nom.charAt(0).toUpperCase() }}.
             </option>
           </select>
         </div>
@@ -26,7 +26,7 @@
         <div class="select is-multiple">
           <select v-model="joueursB" multiple size="8">
             <option v-for="joueur in equipeB.joueurs" :value="joueur.id" :key="joueur.id">
-              {{ joueur.prenom }}
+              {{ joueur.prenom }} {{ joueur.nom.charAt(0).toUpperCase() }}.
             </option>
           </select>
         </div>
@@ -47,8 +47,8 @@ export default {
   async fetch () {
     const idEquipeA = this.$store.getters.idEquipeA
     const idEquipeB = this.$store.getters.idEquipeB
-    const { data: equipeA } = await this.$axios.get('/equipes/' + idEquipeA)
-    const { data: equipeB } = await this.$axios.get('/equipes/' + idEquipeB)
+    const { data: equipeA } = await this.$axios.get('/api/equipe/' + idEquipeA)
+    const { data: equipeB } = await this.$axios.get('/api/equipe/' + idEquipeB)
     this.equipeA = equipeA
     this.equipeB = equipeB
   },

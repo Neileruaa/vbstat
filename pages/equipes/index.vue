@@ -11,8 +11,9 @@ export default {
   name: 'Index',
   components: { TeamTable },
   async asyncData ({ $axios }) {
-    const { data } = await $axios.get('/equipes/')
-    return { listEquipe: data['hydra:member'] }
+    const { data: dataEquipes } = await $axios.get('/api/equipes/')
+    console.log(dataEquipes)
+    return { listEquipe: dataEquipes }
   }
 }
 </script>
